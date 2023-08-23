@@ -5,5 +5,5 @@ this is a little command line programm to solve this problem by letting the user
 after the assigning process the programm will generate a pdf with generically made passwords.
 
 annotations:
-passwords 8 digits, only distinguishable characters, signs and numbers, german-us-keyboard-layouts do not matter.
+passwords 8 digits, only distinguishable characters, signs and numbers.
 due to its design it is possible to adjust further requirements in the written functions.
