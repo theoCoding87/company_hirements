@@ -50,7 +50,7 @@ class ConsolePdfBuilder:
     def __init__(self, path):
         # list which holds listElement for each given Value for an Employee in source.txt, will be the header for tabulate
         self.mlistHead = [] 
-        # dict to hold demanded Values and its assignet
+        # dict to hold demanded Values and its assigmets, initiated with the values 0
         self.mDictValuePairs = {"strFirstName":0, "strLastName":0, "intUsername":0}
 
 
@@ -173,6 +173,15 @@ class ConsolePdfBuilder:
             print(tabulate(listTableData, headers=self.mlistHead, tablefmt="grid"))
         return 1
 
+    def buildPdf(self):
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("helvetica", "B", 16)
+        pdf.cell(40, 10, "Momox")
+        #pdf.image('logo.jpg', x = None, y = None, type = 'jpg',)
+        pdf.output("/export/output.pdf")
+        return 1
+
 
 
 
@@ -182,33 +191,18 @@ class ConsolePdfBuilder:
 
 source = "source.txt"
 x = ConsolePdfBuilder(source)
-# x.PrintWelcomeScreen()
-# x.EvaluatePath(source)
-x.PrintTable(source)
-i = input("Welche Spalte ist Vorname: ")
-x.SetFirstNameIndex(i)
+#x.PrintWelcomeScreen()
+#x.EvaluatePath(source)
+#x.PrintTable(source)
+#i = input("Welche Spalte ist Vorname: ")
+#x.SetFirstNameIndex(i)
 
-i = input("Welche Spalte ist Nachname: ")
-x.SetLastNameIndex(i)
-
-i = input("Welche Spalte ist Personalnummer: ")
-x.setPersonalId(i)
-
-print(x.mDictValuePairs)
-
+#i = input("Welche Spalte ist Nachname: ")
+#x.SetLastNameIndex(i)
+#i = input("Welche Spalte ist Personalnummer: ")
+#x.setPersonalId(i)
+#print(x.mDictValuePairs)
+x.buildPdf()
 
 
-#Todo: class momoxPDF(assignedStructure)
-# needs to be 3x3 ?
-pdf = FPDF()
-pdf.add_page()
-pdf.set_font("helvetica", "B", 16)
-pdf.cell(40, 10, "Momox")
-pdf.image('logo.jpg', x = None, y = None, type = 'jpg',)
-pdf.output("firsExample.pdf")
-
-
-
-# password-generator
-
-#print("---------------> convertion done.")
+print("---------------> convertion done.")
