@@ -1,7 +1,0 @@
-5463	m	Ahmad	Maqsood
-5464	m	Barkal	Darwish
-5465	m	Akbar	Jamal
-5466	w	Benmahfoud	Lynda
-5467	w	Lindner	Susann
-5468	w	Ali	Nibras Sabri Ali
-5469	m	Sharifi	Barat Ali

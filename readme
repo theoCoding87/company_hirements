@@ -1,0 +1,11 @@
+this is a little app running inside a docker container, so it is both working on unix and windows, furthermore no python or python lib needs to be installed onto the host machine / laptop of the employee using this app. it is command line based and creates the directory "export" into the working directory you avoke the given docker command of. concluding it deletes its image and container after running, so there is no storage or ram storage holding any capacity for it afterwards.
+
+it creates a pdf out of a given table (or headless csv) which is filled with attributes like name, first name, username (build with the employee-number) and adding a generic password of 8 digits which are distinguishable (that means it has no letter "l" because it can be confused with "I" or "j", depending on fonts. Like so it has no 0 nor O in no capital, nor lower case. The generic password will not have any s or S, just the number 5 is possible. Its special characters are the ones, achieved to be written with shift, no Alt or AltGr.
+
+1. install docker desktop on your machine and navigate in command line into the unzipped directory.
+2. Download the .xls-file, which is given by the staff department and copy the values into clipboard.
+   Copy the clipboard into source.txt, it has to include delimiters only like tabulators and returns. 
+   If an employee has multiple first or last names, they are delimited by blanks and are processed as such.
+2. run the following command. annotation: on a windows-machine you don't need the sudos in the command line.
+
+sudo docker build -t hirements . && sudo docker run -it --rm -v $(pwd)/export:/export hirements; sudo docker image rm hirements

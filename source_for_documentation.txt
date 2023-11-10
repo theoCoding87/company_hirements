@@ -1,0 +1,7 @@
+51a67	m	Beutlin	Frodo	123
+52s66	w	Lady	Galadriel	345
+53d65	m	Tuk	Pippin	789
+54f64	m	Dwarf	Gimli	123
+55g63	m	Thranduil	Legolas	456
+56h62	w	Elrond fr.	Arwen	789
+57j61	m	Rohan	Faramir	000
