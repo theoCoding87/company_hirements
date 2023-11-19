@@ -1,40 +1,8 @@
-# TODO Converts given Ticket-Value of long string into usable csv.
-# TODO Also sorts First- and Last name, due its different order given by HR.
-#
-
 from fpdf import FPDF 
 from tabulate import tabulate
 from datetime import datetime
 import csv
 import random
-
-
-
-
-####Evaluate the Source File / given Path
-def testObjectValues(path):
-    if type(path) != str:
-        print("Function Error: Function expects Datatype of String.")
-    #Todo: Exception for wrong string of path
-    #except OSError as e:
-        #print("Functin Error: No such File.")
-    else:
-        with open(path, "r") as f:
-            listEmployee = [line.rstrip("\n") for line in f]
-            print("\n#### Check Object and its Values #### (You can expect 6 Lines)")
-            print(" >   Object Type     : " + str(type(listEmployee)))
-            count = 0
-            for i in listEmployee:
-                count += 1
-            print(" >   Number of items :", count)
-            ValueFirstItem= listEmployee[0].split("\t")     #Todo: changed firrst value to index of 0 -> still working?
-            arrWrittenNumber = ["1st","2nd","3rd","4th"]
-            countNum = 0
-            for i in ValueFirstItem:
-                print(" >  ", arrWrittenNumber[countNum], "value is ", ValueFirstItem[countNum])
-                countNum += 1
-            #print("First Item is ", ValueFirstItem[0], " | ", ValueFirstItem[1])
-            print("#### EndOfCheck ####\n")
 
 
 class ConsolePdfBuilder:
@@ -87,13 +55,13 @@ class ConsolePdfBuilder:
         strTripplet += listConsonant[int(varBoolean)][random.randint(0,len(listConsonant[int(varBoolean)])-1)]
         return strTripplet
 
-    ### second function to create a password
+    ### second of two functions to create a password
     ### function to create random constellation of a duplet from a predefined list
     ### it is possible that the duplet has two numbers and no special character, or the other way around
     def createSpecialCharacterDuplet(self):
         listSymbolAndNumber = []
         # no 7 due to its similar appearance to t and so on. no tilde, no accents, no square brackets.
-        listSymbolAndNumber.append(["!", "$", "%", "&", "/", "(", ")", "?", "#", ":", ";", "=", "2","3","4","5","6","8","9"])
+        listSymbolAndNumber.append(["!", "&", "?", "#", ":", ";", "=", "2","3","4","5","6","8","9"])
         #create randomly chosen digits of the given lists above
         #strDuplet = ""
         # first digit
@@ -110,22 +78,19 @@ class ConsolePdfBuilder:
 
 
     def PrintTable(self,listTableData):
-        ### Prints out Table on Console. Table head is filled with numbers as indicees.
+        ### Prints out Table on Console. Table head is filled with numbers of indicees.
         ### User has to input Numbers for relevant Values:
-        ### Vorname, Nachname, Personalnummer
+        ### Vorname, Nachname, Personalnummer 
         
         with open("source.txt","r") as f:
             listEmployee = [line.rstrip("\n") for line in f]
-            
-            
-            # get mListHead as List of Indicees for Table Head
+            ##Todo: correct / check the comment of this function
             numOfAttributes = 0 # as first Index of Table Head
             listFirstEmployee = listEmployee[0].split("\t")
+            # for each attribute given, an index has to be appended to mListHead
             for i in listFirstEmployee:
                     self.mListHead.append(numOfAttributes)
                     numOfAttributes += 1
-                            
-            
             ### create object containing given employees for body of table:
             index = 0
             currentEmployee = listEmployee[index].split("\t")
@@ -135,7 +100,6 @@ class ConsolePdfBuilder:
             print(tabulate(self.listTableData, headers=self.mListHead, tablefmt="grid"))
         return 1
 
-    
     def buildPdf(self, listTableData, mDictValuePairs):
         pdf = FPDF()
         a = 0
@@ -162,8 +126,7 @@ class ConsolePdfBuilder:
             pdf.cell(w=60, h=18, txt=x.createPassword())
             pdf.image('momox_logo.png', 130, 15,48)
             a += 1
-        # Todo: parse Datetime into Filename
-        pdf.output("/export/einstellungen_" + datetime.today().strftime('%Y-%m-%d') + "output.pdf")
+        pdf.output("/export/Einstellungen_" + datetime.today().strftime('%Y%m%d') + ".pdf")
         return 1
 
 
@@ -178,8 +141,8 @@ x.PrintTable(x.listTableData)
 x.SetFirstNameIndex(input("\nIn welcher Spalte steht der Vorname? "))
 x.SetLastNameIndex(input("In welcher Spalte steht der Nachname? "))
 x.setPersonalId(input("in welcher Spalte steht die Personalnummer? "))
-print("\n-> Das PDF wird erstellt ... siehe Verzeichnis [Export]")
-print("-> Danach werden die Container und Images gelöscht ...\n")
-
-
+print("\n-> PDF wird erstellt ... siehe Verzeichnis [Export]")
+#print("\nDEBUG: output x.listTableData: ", x.listTableData)
+#print("\nDEBUG: output x.mDictValuePairs: ", x.mDictValuePairs)
 x.buildPdf(x.listTableData, x.mDictValuePairs)
+print("-> Danach werden die Container und Images gelöscht ...\n")

@@ -1,7 +1,7 @@
-12a98	m	Beutlin	Frodo	123
-23b87	w	Finwe Aman	Galadriel	345
-34c76	m	Tuk	Peregin Pippin	906
-45d65	m	von Khazad-dûm	Gimli	123
-56e54	m	Thranduil	Legolas	456
-67f43	unsterblich	Elrond v. Bruchtal.	Arwen Undomiel	789
-078g32	m	Rohan	Faramir	000
+51a67	m	Beutlin	Frodo	123
+52s66	w	Lady	Galadriel	345
+53d65	m	Tuk	Pippin	789
+54f64	m	Dwarf	Gimli	123
+55g63	m	Thranduil	Legolas	456
+56h62	w	Elrond Fr.	Arwen	789
+57j61	m	Rohan	Faramir	0
